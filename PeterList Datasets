@@ -1,0 +1,42 @@
+USE PeterList;
+
+CREATE DATASET User(UserType)
+	PRIMARY KEY userID;
+
+CREATE DATASET Postings(PostingType)
+	PRIMARY KEY postID;
+
+
+** Testing for inserting new element in the dataset **
+
+USE PeterList;
+
+USE PeterList;
+
+CREATE DATASET Jobs(JobType)
+PRIMARY KEY postID;
+
+INSERT INTO Jobs({"postID": "b481f5", "jobInfo":{"location":{"streetName": "Jamboree","buildingNumber": 446, "city": "Santa Monica","state": "CA","country": "United States of America"},"dateTime": datetime("2017-10-11T11:11:40"),"description": "Looking for someone...", "amount": 66361, "userID": "c944f7", "automatedEmailID": "cjjdfae@peterlist.org"}, "postingCategory": "Job","fullTime": true, "jobCategory": 9, "organizationName":"Amazon", "jobTitle": "Intern", "jobRequirement": "Should have a Bachelor and Masters Degree with a 2 year work experience"});
+
+CREATE DATASET Event(EventType)
+PRIMARY KEY postID;
+
+INSERT INTO Event({"postID": "c300f0", "eventInfo":{"location":{"streetName": "Palatine","buildingNumber": 226, "city": "Newport Beach","state": "CA","country": "United States of America"},"dateTime": datetime("2017-06-27T23:37:03"),"description": "An Exciting Event in...", "amount": 64, "userID": "c944f7", "automatedEmailID": "cjjdfae@peterlist.org"}, "postingCategory": "Event","startDate": datetime("2017-06-14T21:22:10"),"endDate": datetime("2017-06-29T14:41:26"),"eventCategory": 14, "organizationName": "STEM Inc.", "eventTitle": "Workshop"});
+
+CREATE DATASET ItemSale(ItemsSaleType)
+PRIMARY KEY postID;
+
+INSERT INTO ItemSale({"postID": "d7acca", "itemInfo":{"location":{"streetName": "Berkeley","buildingNumber": 15121, "city": "Newport Beach","state": "CA","country": "United States of America"},"dateTime": datetime("2018-01-21T08:21:30"),"description": "Item on sale...", "amount": 394, "userID": "c944f7", "automatedEmailID": "ahddkab@peterlist.org"}, "postingCategory": "Item Sale","itemName": "Item Title","itemCategory": 18, "condition": "Average"});
+
+CREATE DATASET LostFound(LostFoundType)
+PRIMARY KEY postID;
+
+INSERT INTO LostFound({"postID": "86431e", "itemFoundInfo":{"location":{"streetName": "Jamboree","buildingNumber": 279, "city": "Santa Monica","state": "CA","country": "United States of America"},"dateTime": datetime("2018-03-12T07:42:32"),"description": "Item on sale...", "amount": 0, "userID": "c944f7", "automatedEmailID": "khhekfb@peterlist.org"}, "postingCategory": "LostFound","itemFoundDate": datetime("2018-02-24T11:10:19"), "itemName": "Found Item Title", "lostOrFound" : false});
+
+CREATE DATASET Housing(HousingType)
+PRIMARY KEY postID;
+
+INSERT INTO Housing({"postID": "844587", "housingInfo":{"location":{"streetName": "Berkeley","buildingNumber": 226, "city": "Irvine","state": "CA","country": "United States of America"},"dateTime": datetime("2017-09-03T15:55:10"),"description": "Looking for someone...", "amount": 31351, "userID": "c944f7", "automatedEmailID": "khhekfb@peterlist.org"}, "postingCategory": "Housing","bedroomNumber":4, "petAllowed":true,"housingCategory": 1,"size": 1060, "startDate": datetime("2017-06-04T02:41:50"),"endDate": datetime("2017-06-24T10:25:34"), "occupants": 3,"bathroomType": true, "roomates": 3, "hasParking": false, "localityName" : "Columbia"});
+
+
+INSERT INTO User({"userID": "z9Q44f7","contactInfo":{"phoneNumber": "125-761-0700","email": "jack11chj@mail.kz"},"userPassword": "vakq319f"});

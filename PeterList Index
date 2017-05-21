@@ -1,0 +1,10 @@
+USE PeterList;
+CREATE INDEX userIDx ON User(userID) TYPE BTREE;
+
+CREATE INDEX postIdx ON Postings(postID) TYPE BTREE;
+
+CREATE INDEX postingsDateTime ON Postings(postInfo.dateTime) TYPE BTREE;
+
+CREATE INDEX postingsAmount ON Postings(postInfo.amount) TYPE BTREE;
+
+CREATE INDEX postingstypeIdx ON Postings(postingCategory) TYPE BTREE;

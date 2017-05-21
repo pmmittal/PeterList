@@ -1,0 +1,89 @@
+DROP DATAVERSE PeterList IF EXISTS;
+CREATE DATAVERSE PeterList;
+USE PeterList;
+
+CREATE TYPE AddressType AS {
+	streetName: string?,
+	buildingNumber: int?,
+	city: string,
+	state: string,
+	country: string
+};
+
+CREATE TYPE PostingDetailsType AS {
+	location: AddressType,
+	dateTime: datetime,
+	description: string,
+	amount: float?,
+	userID: string,
+	automatedEmailID: string?							
+};
+
+CREATE TYPE PostingType AS {
+	postID: string,
+	postInfo: PostingDetailsType,
+	postingCategory: string
+};
+
+CREATE TYPE ContactType AS {
+	phoneNumber: string,
+	email: string
+};
+
+CREATE TYPE UserType AS {
+	userID: string,
+	contactInfo: ContactType,
+	userPassword: string
+};
+
+CREATE TYPE JobType AS {
+	postID: string,
+	jobInfo: PostingDetailsType,
+	fullTime: boolean,
+	jobCategory: int,
+	organizationName: string,
+	jobTitle: string,
+	jobRequirement: string
+};
+
+CREATE TYPE HousingType AS {
+	postID: string,
+	housingInfo: PostingDetailsType,
+	bedroomNumber: int,
+	petAllowed: boolean,
+	housingCategory: int,
+	localityName: string?,
+	size: float?,
+	startDate: datetime,
+	endDate: datetime?,
+	occupants: int?,
+	bathroomType: boolean,
+	roomates: int?,
+	hasParking: boolean
+};
+
+CREATE TYPE EventType AS {
+	postID: string,
+	eventInfo: PostingDetailsType,
+	startDate: datetime,
+	endDate: datetime?,
+	eventCategory: int,
+	organizationName: string,
+	eventTitle: string
+};
+
+CREATE TYPE ItemsSaleType AS {
+	postID: string,
+	itemInfo: PostingDetailsType,
+	itemName: string?,
+	itemCategory: int,
+	condition: string?
+};
+
+CREATE TYPE LostFoundType AS {
+	postID: string,
+	itemFoundInfo: PostingDetailsType,
+	itemFoundDate: datetime,
+	itemName: string,
+	lostOrFound: boolean
+};
