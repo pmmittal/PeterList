@@ -7,6 +7,7 @@ CREATE TYPE AddressType AS {
 	buildingNumber: int?,
 	city: string,
 	state: string,
+	zip: string,
 	country: string
 };
 
@@ -16,7 +17,8 @@ CREATE TYPE PostingDetailsType AS {
 	description: string,
 	amount: float?,
 	userID: string,
-	automatedEmailID: string?							
+	automatedEmailID: string?,
+	photos: string?							
 };
 
 CREATE TYPE PostingType AS {
@@ -39,8 +41,8 @@ CREATE TYPE UserType AS {
 CREATE TYPE JobType AS {
 	postID: string,
 	jobInfo: PostingDetailsType,
-	fullTime: boolean,
-	jobCategory: int,
+	jobType: string,
+	jobCategory: string,
 	organizationName: string,
 	jobTitle: string,
 	jobRequirement: string
@@ -51,14 +53,14 @@ CREATE TYPE HousingType AS {
 	housingInfo: PostingDetailsType,
 	bedroomNumber: int,
 	petAllowed: boolean,
-	housingCategory: int,
+	housingCategory: string,
 	localityName: string?,
 	size: float?,
 	startDate: datetime,
 	endDate: datetime?,
 	occupants: int?,
 	bathroomType: boolean,
-	roomates: int?,
+	roommate: int?,
 	hasParking: boolean
 };
 
@@ -67,7 +69,7 @@ CREATE TYPE EventType AS {
 	eventInfo: PostingDetailsType,
 	startDate: datetime,
 	endDate: datetime?,
-	eventCategory: int,
+	eventCategory: string,
 	organizationName: string,
 	eventTitle: string
 };
@@ -76,7 +78,7 @@ CREATE TYPE ItemsSaleType AS {
 	postID: string,
 	itemInfo: PostingDetailsType,
 	itemName: string?,
-	itemCategory: int,
+	itemCategory: string,
 	condition: string?
 };
 
@@ -87,3 +89,4 @@ CREATE TYPE LostFoundType AS {
 	itemName: string,
 	lostOrFound: boolean
 };
+

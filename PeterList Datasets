@@ -6,7 +6,6 @@ CREATE DATASET User(UserType)
 CREATE DATASET Postings(PostingType)
 	PRIMARY KEY postID;
 
-
 ** Testing for inserting new element in the dataset **
 
 USE PeterList;
