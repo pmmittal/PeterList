@@ -6,6 +6,36 @@ import random
 import time
 import math
 
+jobCategory_list = ['AccountingAdmin', 'ClericalArt', 'DesignAutomotiveBankingBiotechBusiness', \
+ 'ManagementConstructionConsultantCustomer ServiceEducationEngineeringFilm', \
+ 'VideoFinanceFood', 'BeverageGeneral LaborGovernmentHospitalityHuman ResourcesInformation TechnologyLegalManufacturingMarketing', \
+ 'PRMedia', 'JournalismMedical', 'HealthNonprofitOtherReal EstateRetailSalesScienceSoftware', 'TechnologyTransportation']
+
+eventCategory_list = ['Arts', 'MusicCamps, Trips', 'RetreatsCareerCharity', 'CausesClass, Training', \
+                      'WorkshopsConcerts', 'PerformanceConferences', 'SeminarsFestivals', 'FairsFood', \
+                      'DrinkGames', 'CompetitionsHobbies', 'Special InterestNetworkingOtherParties', \
+                      'Social GatheringsReligion', 'SpiritualityScience', 'TechnologySports', 'FitnessTravel', \
+                      'Outdoor']
+
+itemCategory_list = ['BicyclesBooksCars', \
+                     'MotorcyclesCell phonesClothing', 'AccessoriesComputersElectronicsFurnitureHealth', \
+                     'BeautyHousehold ItemsMusical InstrumentsOtherPhoto/VideoSkateboards', \
+                     'ScootersSporting GoodsTicketsToolsToys', 'GamesVideo Games']
+
+lostFoundCategory_list = ['Item Lost','Item Found']
+
+housing_images = ["https://images.unsplash.com/photo-1486304873000-235643847519?dpr=2&auto=format&fit=crop&w=1500&h=844&q=80&cs=tinysrgb&crop=&bg=",
+"https://images.unsplash.com/photo-1488805990569-3c9e1d76d51c?dpr=2&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=&bg=",
+"https://images.unsplash.com/photo-1463620910506-d0458143143e?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg=",
+"https://images.unsplash.com/photo-1473447216727-44efba8cf0e0?dpr=1&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=&bg=",
+"https://images.unsplash.com/photo-1444201983204-c43cbd584d93?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg=",
+"https://images.unsplash.com/photo-1424847262089-18a6858bd7e2?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg="]
+
+event_images = ["http://tricostar.com/wp-content/uploads/Event-management.png",
+                "http://technext.github.io/Evento/images/demo/bg-slide-01.jpg",
+                "https://www.uwrf.edu/CareerFair/images/Career-Fair-Large-Page-Banner-JPG_3.jpg",
+                "https://d3n8a8pro7vhmx.cloudfront.net/greekladders/pages/187/attachments/original/1411750417/careerfair-image.jpg?1411750417"]
+
 domains = [ "hotmail.com", "gmail.com", "aol.com", "mail.com" , "mail.kz", "yahoo.com"]
 letters = ["a", "b", "c", "d","e", "f", "g", "h", "i", "j", "k", "l"]
 
@@ -61,10 +91,6 @@ city = ["Irvine","Newport Beach","Laguna Beach","Venice","Santa Monica"]
 
 jobTitle = ["Intern","Software Engineer","Business Analyst","Consultant"]
 
-item_type = ["Music","Books","Accessory","Bikes","Cars","Clothes","Phones"]
-job_type = ["Accounting","Programming","Finance","Teaching","Research","Data Analyst","Consulting","Mechanical","Construction"]
-event_type = ["Music Concert", "Community Service","Career Fair","Sports","TV and Cinema","Workshop"]
-housing_type = ["Rent","Lease", "Buy"]
 company_name = ["WellsFargo","Google","Chase","Yahoo","Facebook","Amazon","Verizon","Tesla"]
 true_false = ["true","false"]
 startDate = 'datetime("2017-05-20T00:00:00")'
@@ -86,9 +112,9 @@ for i in range(1,101):
     text_file.write(user_string.format(userID,userPhone,useremailID,userPassword))
     text_file.write("\n")
 
-    job_string = '{{"postID": "{0}", "postInfo":{{"location":{{"streetName": "{1}","buildingNumber": {2}, "city": "{3}","state": "{4}","country": "United States of America"}},"dateTime": {5},\
+    job_string = '{{"postID": "{0}", "postInfo":{{"location":{{"streetName": "{1}","buildingNumber": {2}, "city": "{3}","state": "{4}","country": "United States of America","zip": 92612}},"dateTime": {5},\
 "description": "{6}", "amount": {7}, "userID": "{8}", "automatedEmailID": "{9}"}}, "postingCategory": "Job",\
-"fullTime": {10}, "jobCategory": {11}, "organizationName":"{12}", "jobTitle": "{13}", "jobRequirement": "{14}"}}'
+"fullTime": {10}, "jobCategory": "{11}", "organizationName":"{12}", "jobTitle": "{13}", "jobRequirement": "{14}"}}'
 
     postID = ID()
     streetName = random.choice(random_street)
@@ -102,7 +128,7 @@ for i in range(1,101):
     auto_email = random.choice(randomemailID)
 
     value = random.choice(true_false)
-    jobCategory = randint(1,34)
+    jobCategory = random.choice(jobCategory_list)
     organizationName = random.choice(company_name)
     jobTitle = random.choice(jobTitle)
     jobRequirement = "Should have a Bachelor and Masters Degree with a 2 year work experience"
@@ -112,9 +138,9 @@ for i in range(1,101):
     text_file2.write("\n")
     
 
-    event_string = '{{"postID": "{0}", "postInfo":{{"location":{{"streetName": "{1}","buildingNumber": {2}, "city": "{3}","state": "{4}","country": "United States of America"}},"dateTime": {5},\
-"description": "{6}", "amount": {7}, "userID": "{8}", "automatedEmailID": "{9}"}}, "postingCategory": "Event",\
-"startDate": {10},"endDate": {11},"eventCategory": {12}, "organizationName": "{13}", "eventTitle": "{14}"}}'
+    event_string = '{{"postID": "{0}", "postInfo":{{"location":{{"streetName": "{1}","buildingNumber": {2}, "city": "{3}","state": "{4}","country": "United States of America","zip": 92612}},"dateTime": {5},\
+"description": "{6}", "amount": {7}, "userID": "{8}", "automatedEmailID": "{9}", "photos":"{15}"}}, "postingCategory": "Event",\
+"startDate": {10},"endDate": {11},"eventCategory": "{12}", "organizationName": "{13}", "eventTitle": "{14}"}}'
 
     postID = ID()
     streetName = random.choice(random_street)
@@ -131,17 +157,18 @@ for i in range(1,101):
     endDateEvent = 'datetime("2017-06-29T23:59:59")'
     randomStartDate = randomDate(startDateEvent, endDateEvent, random.random())
     randomEndDate = randomDate(randomStartDate, endDateEvent, random.random())
-    eventCategory = randint(1,18)
+    eventCategory = random.choice(eventCategory_list)
     organizationName = random.choice(["TD Music Group","ASUCI","STEM Inc.","ICS"])
     eventTitle = random.choice(["Fiesta","Workshop","Fair","Market"])
+    eventPhoto = random.choice(event_images)
 
     text_file2.write(event_string.format(postID,streetName,buildingNumber,city,state,randomDateTime,description,amount,userID,auto_email,randomStartDate,\
-                                       randomEndDate,eventCategory,organizationName,eventTitle))
+                                       randomEndDate,eventCategory,organizationName,eventTitle,eventPhoto))
     text_file2.write("\n")
 
-    itemSale_string = '{{"postID": "{0}", "postInfo":{{"location":{{"streetName": "{1}","buildingNumber": {2}, "city": "{3}","state": "{4}","country": "United States of America"}},"dateTime": {5},\
+    itemSale_string = '{{"postID": "{0}", "postInfo":{{"location":{{"streetName": "{1}","buildingNumber": {2}, "city": "{3}","state": "{4}","country": "United States of America","zip": 92612}},"dateTime": {5},\
 "description": "{6}", "amount": {7}, "userID": "{8}", "automatedEmailID": "{9}"}}, "postingCategory": "Item Sale",\
-"itemName": "{10}","itemCategory": {11}, "condition": "{12}"}}'
+"itemName": "{10}","itemCategory": "{11}", "condition": "{12}"}}'
 
     
     postID = ID()
@@ -156,7 +183,7 @@ for i in range(1,101):
     auto_email = random.choice(randomemailID)
 
     itemName = "Item Title"
-    itemCategory = randint(1,19)
+    itemCategory = random.choice(itemCategory_list)
     condition = random.choice(["Fairly New","Old","Average","Good"])
 
     text_file2.write(itemSale_string.format(postID,streetName,buildingNumber,city,state,randomDateTime,description,amount,userID,auto_email,itemName,\
@@ -164,9 +191,9 @@ for i in range(1,101):
     text_file2.write("\n")
 
 
-    lostFound_string = '{{"postID": "{0}", "postInfo":{{"location":{{"streetName": "{1}","buildingNumber": {2}, "city": "{3}","state": "{4}","country": "United States of America"}},"dateTime": {5},\
+    lostFound_string = '{{"postID": "{0}", "postInfo":{{"location":{{"streetName": "{1}","buildingNumber": {2}, "city": "{3}","state": "{4}","country": "United States of America","zip": 92612}},"dateTime": {5},\
 "description": "{6}", "amount": {7}, "userID": "{8}", "automatedEmailID": "{9}"}}, "postingCategory": "LostFound",\
-"itemFoundDate": {10}, "itemName": "{11}", "lostOrFound" : {12}}}'
+"itemFoundDate": {10}, "itemName": "{11}", "lostOrFound" : "{12}"}}'
 
     postID = ID()
     streetName = random.choice(random_street)
@@ -181,17 +208,17 @@ for i in range(1,101):
 
     itemFoundDate = randomDate(startDate, randomDateTime, random.random())
     itemName = "Found Item Title"
-    lostFound = random.choice(true_false)
+    lostFound = random.choice(lostFoundCategory_list)
 
     text_file2.write(lostFound_string.format(postID,streetName,buildingNumber,city,state,randomDateTime,description,amount,userID,auto_email,itemFoundDate,\
                                             itemName,lostFound))
     text_file2.write("\n")
 
 
-    housing_string = '{{"postID": "{0}", "postInfo":{{"location":{{"streetName": "{1}","buildingNumber": {2}, "city": "{3}","state": "{4}","country": "United States of America"}},"dateTime": {5},\
-"description": "{6}", "amount": {7}, "userID": "{8}", "automatedEmailID": "{9}"}}, "postingCategory": "Housing",\
-"bedroomNumber":{10}, "petAllowed":{11},"housingCategory": {12},"size": {13}, "startDate": {14},"endDate": {15}, "occupants": {16},\
-"bathroomType": {17}, "roomates": {18}, "hasParking": {19}, "localityName" : "{20}"}}'
+    housing_string = '{{"postID": "{0}", "postInfo":{{"location":{{"streetName": "{1}","buildingNumber": {2}, "city": "{3}","state": "{4}","country": "United States of America","zip": 92612}},"dateTime": {5},\
+"description": "{6}", "amount": {7}, "userID": "{8}", "automatedEmailID": "{9}", "photos":"{21}"}}, "postingCategory": "Housing",\
+"bedroomNumber":{10}, "petAllowed":{11},"housingCategory": "{12}","size": {13}, "startDate": {14},"endDate": {15}, "occupants": {16},\
+"bathroomType": {17}, "roommates": {18}, "hasParking": {19}, "localityName" : "{20}"}}'
 
     postID = ID()
     streetName = random.choice(random_street)
@@ -200,13 +227,13 @@ for i in range(1,101):
     state = "CA"
     randomDateTime = randomDate(startDate, endDate, random.random())
     description = "Looking for someone..."
-    amount = amount1(30000,100000)
+    amount = amount1(400,1400)
     userID = userID
     auto_email = random.choice(randomemailID)
 
     bedroom = randint(1,5)
     pet = random.choice(true_false)
-    housingCategory = randint(1,3)
+    housingCategory = "Rent/Lease"
     size = randint(900,1200)
     startDateEvent = 'datetime("2017-06-01T00:00:00")'
     endDateEvent = 'datetime("2017-06-29T23:59:59")'
@@ -217,10 +244,11 @@ for i in range(1,101):
     roomates = randint(1,3)
     hasParking = random.choice(true_false)
     locality = random.choice(["Harvard","Oxford","Columbia","Berkeley","Mesa"])
+    housingPhoto = random.choice(housing_images)
     
 
     text_file2.write(housing_string.format(postID,streetName,buildingNumber,city,state,randomDateTime,description,amount,userID,auto_email,bedroom,pet,\
-                                       housingCategory,size,randomStartDate,randomEndDate,occupants,bathroom,roomates,hasParking,locality))
+                                       housingCategory,size,randomStartDate,randomEndDate,occupants,bathroom,roomates,hasParking,locality,housingPhoto))
     text_file2.write("\n")
 
 

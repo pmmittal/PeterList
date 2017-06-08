@@ -7,7 +7,7 @@ CREATE TYPE AddressType AS {
 	buildingNumber: int?,
 	city: string,
 	state: string,
-	zip: string,
+	zip: int?,
 	country: string
 };
 
