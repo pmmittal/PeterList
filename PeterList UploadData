@@ -1,7 +1,7 @@
 USE PeterList;
 
 LOAD DATASET User USING localfs       
-		(("path"="127.0.0.1:///Users/Parth/Desktop/Research/SpringPeterList/ownersampledata.adm"),("format"="adm"));
+		(("path"="127.0.0.1:///Users/Parth/Desktop/Research/PeterList/ownersampledata.adm"),("format"="adm"));
 
 LOAD DATASET Postings USING localfs
-       (("path"="127.0.0.1:///Users/Parth/Desktop/Research/SpringPeterList/sampledata.adm"),("format"="adm"));
+       (("path"="127.0.0.1:///Users/Parth/Desktop/Research/PeterList/sampledata.adm"),("format"="adm"));
