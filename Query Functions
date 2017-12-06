@@ -1,0 +1,54 @@
+USE PeterList;
+CREATE FUNCTION searchPostingCategory(category) {
+    (SELECT *
+    FROM Postings p
+    WHERE p.postingCategory = category
+    )
+};
+
+USE PeterList;
+searchPostingCategory("Job");
+searchPostingCategory("Event");
+searchPostingCategory("Item Sale");
+searchPostingCategory("Housing Sale");
+searchPostingCategory("Housing Lease");
+
+
+USE PeterList;
+CREATE FUNCTION searchJob(jobType,jobIndustry) {
+(SELECT *
+FROM Postings p
+WHERE (p.postingCategory = "Job" AND p.jobType = jobType AND p. jobIndustry = jobIndustry )
+)
+};
+
+USE PeterList;
+searchJob("Full Time","Management");
+
+USE PeterList;
+CREATE FUNCTION searchEvent(eventCategory,eventStartOn ){
+(
+SELECT *
+FROM Postings p
+WHERE(p.postingCategory = "Event" AND p.eventCategory = eventCategory AND p.eventStartOn >= eventStartOn)
+)	
+};
+
+USE PeterList;
+searchEvent("Travel","2017-06-01T00:00:00");
+
+
+USE PeterList;
+CREATE FUNCTION searchItemSale(itemCategory,condition){
+(SELECT *
+FROM Postings p
+WHERE (p.postingCategory = "Item Sale" AND (itemCategory IS NULL OR p.itemCategory = itemCategory) AND p.condition = condition)
+)	
+};
+
+USE PeterList;
+searchItemSale("Musical Instruments","Good");
+
+
+
+Q) How can we have function arguments that may or may not be empty

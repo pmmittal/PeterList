@@ -15,27 +15,34 @@ USE PeterList;
 CREATE DATASET Jobs(JobType)
 PRIMARY KEY postID;
 
-INSERT INTO Jobs({"postID": "b481f5", "jobInfo":{"location":{"streetName": "Jamboree","buildingNumber": 446, "city": "Santa Monica","state": "CA","country": "United States of America"},"dateTime": datetime("2017-10-11T11:11:40"),"description": "Looking for someone...", "amount": 66361, "userID": "c944f7", "automatedEmailID": "cjjdfae@peterlist.org"}, "postingCategory": "Job","fullTime": true, "jobCategory": 9, "organizationName":"Amazon", "jobTitle": "Intern", "jobRequirement": "Should have a Bachelor and Masters Degree with a 2 year work experience"});
+INSERT INTO Jobs({"postID": "77f91c", "jobInfo":{"location":{"streetName": "Jamboree","buildingNumber": 228, "city": "Laguna Beach","state": "CA","country": "United States of America","zip": 92612},"createdOn": "2017-11-23T18:28:14","description": "Looking for someone...", "amount": 40876, "userID": "65e523", "automatedEmailID": "gjhhcak@peterlist.org"},"jobType": "Part Time", "jobIndustry": "Hospitality", "jobOrganizationName":"Wells Fargo", "jobTitle": "Data Scientist", "jobRequirement": "Should have a Bachelor and Masters Degree with a 2 years work experience"});
+
 
 CREATE DATASET Event(EventType)
 PRIMARY KEY postID;
 
-INSERT INTO Event({"postID": "c300f0", "eventInfo":{"location":{"streetName": "Palatine","buildingNumber": 226, "city": "Newport Beach","state": "CA","country": "United States of America"},"dateTime": datetime("2017-06-27T23:37:03"),"description": "An Exciting Event in...", "amount": 64, "userID": "c944f7", "automatedEmailID": "cjjdfae@peterlist.org"}, "postingCategory": "Event","startDate": datetime("2017-06-14T21:22:10"),"endDate": datetime("2017-06-29T14:41:26"),"eventCategory": 14, "organizationName": "STEM Inc.", "eventTitle": "Workshop"});
+USE PeterList;
+INSERT INTO Event({"postID": "79d42a", "eventInfo":{"location":{"streetName": "Harvard","buildingNumber": 15121, "city": "Newport Beach","state": "CA","country": "United States of America","zip": 92612},"createdOn": "2017-03-19T15:20:03","description": "An Exciting Event in...", "amount": 92, "userID": "f64748", "automatedEmailID": "hkiacdl@peterlist.org", "photos": ["http://tricostar.com/wp-content/uploads/Event-management.png"]},"eventStartOn": "2017-06-03T15:17:25","eventEndOn": "2017-06-27T00:17:01","eventCategory": "Festivals", "eventOrganizationName": "ICS", "eventTitle": "Market"});
 
 CREATE DATASET ItemSale(ItemsSaleType)
 PRIMARY KEY postID;
 
-INSERT INTO ItemSale({"postID": "d7acca", "itemInfo":{"location":{"streetName": "Berkeley","buildingNumber": 15121, "city": "Newport Beach","state": "CA","country": "United States of America"},"dateTime": datetime("2018-01-21T08:21:30"),"description": "Item on sale...", "amount": 394, "userID": "c944f7", "automatedEmailID": "ahddkab@peterlist.org"}, "postingCategory": "Item Sale","itemName": "Item Title","itemCategory": 18, "condition": "Average"});
+INSERT INTO ItemSale({"postID": "933ece", "itemInfo":{"location":{"streetName": "Harvard","buildingNumber": 15121, "city": "Laguna Beach","state": "CA","country": "United States of America","zip": 92612},"createdOn": "2017-06-10T17:46:39","description": "Item on sale...", "amount": 661, "userID": "f64748", "automatedEmailID": "jlgkiik@peterlist.org"}, "itemName": "Item Title","itemCategory": "Household", "condition": "Old"});
 
-CREATE DATASET LostFound(LostFoundType)
+
+
+CREATE DATASET HousingSale(HousingSaleType)
 PRIMARY KEY postID;
 
-INSERT INTO LostFound({"postID": "86431e", "itemFoundInfo":{"location":{"streetName": "Jamboree","buildingNumber": 279, "city": "Santa Monica","state": "CA","country": "United States of America"},"dateTime": datetime("2018-03-12T07:42:32"),"description": "Item on sale...", "amount": 0, "userID": "c944f7", "automatedEmailID": "khhekfb@peterlist.org"}, "postingCategory": "LostFound","itemFoundDate": datetime("2018-02-24T11:10:19"), "itemName": "Found Item Title", "lostOrFound" : false});
+INSERT INTO HousingSale({"postID": "29f83e", "housingInfo":{"location":{"streetName": "Exter","buildingNumber": 15121, "city": "Laguna Beach","state": "CA","country": "United States of America","zip": 92612},"createdOn": "2017-04-08T18:34:56","description": "Looking for someone...", "amount": 983, "userID": "f64748", "automatedEmailID": "hkiacdl@peterlist.org", "photos":["https://images.unsplash.com/photo-1424847262089-18a6858bd7e2?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg="]},"bedroomNumber":7, "bathroomNumber": 7,"homeType": "Penthouse","size": 1100, "dateAvailable": "2017-06-06T04:45:21","furnished": false, "parkingNumber": 2,"localityName" : "Oxford"});
 
-CREATE DATASET Housing(HousingType)
+
+USE PeterList;
+CREATE DATASET HousingLease(HousingLeaseType)
 PRIMARY KEY postID;
 
-INSERT INTO Housing({"postID": "844587", "housingInfo":{"location":{"streetName": "Berkeley","buildingNumber": 226, "city": "Irvine","state": "CA","country": "United States of America"},"dateTime": datetime("2017-09-03T15:55:10"),"description": "Looking for someone...", "amount": 31351, "userID": "c944f7", "automatedEmailID": "khhekfb@peterlist.org"}, "postingCategory": "Housing","bedroomNumber":4, "petAllowed":true,"housingCategory": 1,"size": 1060, "startDate": datetime("2017-06-04T02:41:50"),"endDate": datetime("2017-06-24T10:25:34"), "occupants": 3,"bathroomType": true, "roomates": 3, "hasParking": false, "localityName" : "Columbia"});
+INSERT INTO HousingLease({"postID": "08f4a5", "housingInfo":{"location":{"streetName": "Berkeley","buildingNumber": 15121, "city": "Irvine","state": "CA","country": "United States of America","zip": 92612},"createdOn": "2016-09-19T15:36:57","description": "Looking for someone...", "amount": 494, "userID": "f64748", "automatedEmailID": "dikedba@peterlist.org", "photos":["https://images.unsplash.com/photo-1444201983204-c43cbd584d93?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg="]},"bedroomNumber": 5, "bathroomNumber": 4,"homeType": "Condo","size": 992, "dateAvailable": "2017-06-23T05:43:17","furnished": false, "hasParking": false,"localityName" : "Berkeley", "petAllowed": true, "endDate": "2017-06-26T01:51:03", "occupants": 5, "roommates": 2});
 
 
-INSERT INTO User({"userID": "z9Q44f7","contactInfo":{"phoneNumber": "125-761-0700","email": "jack11chj@mail.kz"},"userPassword": "vakq319f"});
+USE PeterList;
+INSERT INTO User({"userID": "f64748","firstName": "Anteater", "lastName": "Mata", "phone": "675-888-6341", "email": "fbffigg@hotmail.com", "password": "zaa1z7", "userPostings": ['8d10da', '79d42a', '933ece', '29f83e', '08f4a5']});

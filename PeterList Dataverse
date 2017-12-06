@@ -7,70 +7,86 @@ CREATE TYPE AddressType AS {
 	buildingNumber: int?,
 	city: string,
 	state: string,
-	zip: int?,
-	country: string
+	country: string,
+	zip: int?
 };
 
 CREATE TYPE PostingDetailsType AS {
 	location: AddressType,
-	dateTime: datetime,
+	createdOn: string,
 	description: string,
 	amount: float?,
 	userID: string,
 	automatedEmailID: string?,
-	photos: string?							
+	photos: [string]?							
 };
 
 CREATE TYPE PostingType AS {
 	postID: string,
 	postInfo: PostingDetailsType,
-	postingCategory: string
-};
-
-CREATE TYPE ContactType AS {
-	phoneNumber: string,
-	email: string
+	postingCategory: string     
 };
 
 CREATE TYPE UserType AS {
 	userID: string,
-	contactInfo: ContactType,
-	userPassword: string
+	firstName: string,
+	lastName: string,
+	phone: string?,
+	email: string,
+	password: string,
+	userPostings: [string]?
 };
 
 CREATE TYPE JobType AS {
 	postID: string,
 	jobInfo: PostingDetailsType,
 	jobType: string,
-	jobCategory: string,
-	organizationName: string,
+	jobIndustry: string,  
+	jobOrganizationName: string,
 	jobTitle: string,
 	jobRequirement: string
 };
 
-CREATE TYPE HousingType AS {
+
+
+CREATE TYPE HousingSaleType AS {
 	postID: string,
 	housingInfo: PostingDetailsType,
 	bedroomNumber: int,
-	petAllowed: boolean,
-	housingCategory: string,
-	localityName: string?,
+	bathroomNumber:int?,
+	homeType: string?,
 	size: float?,
-	startDate: datetime,
-	endDate: datetime?,
+	dateAvailable: string,
+	furnished: boolean?,
+	parkingNumber: int?,
+	localityName: string?					
+	
+};
+
+CREATE TYPE HousingLeaseType AS {
+	postID: string,
+	housingInfo: PostingDetailsType,
+	bedroomNumber: int,
+	bathroomNumber:int?,
+	homeType: string?,
+	size: float?,
+	dateAvailable: string,
+	furnished: boolean?,
+	hasParking: boolean?,
+	localityName: string?,
+	petAllowed: boolean?,
+	endDate: string?,
 	occupants: int?,
-	bathroomType: boolean,
-	roommate: int?,
-	hasParking: boolean
+	roommate: int?
 };
 
 CREATE TYPE EventType AS {
 	postID: string,
 	eventInfo: PostingDetailsType,
-	startDate: datetime,
-	endDate: datetime?,
+	eventStartOn: string,
+	eventEndOn: string,
 	eventCategory: string,
-	organizationName: string,
+	eventOrganizationName: string,
 	eventTitle: string
 };
 
@@ -79,14 +95,11 @@ CREATE TYPE ItemsSaleType AS {
 	itemInfo: PostingDetailsType,
 	itemName: string?,
 	itemCategory: string,
-	condition: string?
+	condition: string
 };
 
-CREATE TYPE LostFoundType AS {
-	postID: string,
-	itemFoundInfo: PostingDetailsType,
-	itemFoundDate: datetime,
-	itemName: string,
-	lostOrFound: boolean
+CREATE TYPE UserSubscriptionType AS {
+  subId: uuid,
+  userID: {{string}}
 };
 

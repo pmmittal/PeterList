@@ -1,10 +1,29 @@
 USE PeterList;
-CREATE INDEX userIDx ON User(userID) TYPE BTREE;
+CREATE INDEX userIdx ON User(userID) TYPE BTREE;
+CREATE INDEX firstNameIdx ON User(firstName) TYPE BTREE;
 
 CREATE INDEX postIdx ON Postings(postID) TYPE BTREE;
 
-CREATE INDEX postingsDateTime ON Postings(postInfo.dateTime) TYPE BTREE;
+CREATE INDEX postingCategoryIdx ON Postings(postingCategory) TYPE BTREE;   #different for jobs, housing, events and for sale
 
-CREATE INDEX postingsAmount ON Postings(postInfo.amount) TYPE BTREE;
+CREATE INDEX createdOnIdx ON Postings(postInfo.createdOn) TYPE BTREE;
 
-CREATE INDEX postingstypeIdx ON Postings(postingCategory) TYPE BTREE;
+CREATE INDEX postingsAmountIdx ON Postings(postInfo.amount) TYPE BTREE;
+
+**Not Predefined**
+
+CREATE INDEX jobIndustryIdx ON Postings(jobIndustry: string?);
+
+CREATE INDEX eventCategoryIdx ON Postings(eventCategory: string?);
+
+CREATE INDEX itemCategoryIdx ON Postings(itemCategory: string?);
+
+
+
+***to optimize queries with token-based similarity predicates on the description field***
+
+CREATE INDEX postingDescriptionIdx ON Postings(description) TYPE KEYWORD;
+
+
+**Check**
+CREATE INDEX dateAvailableIdx ON Postings(dateAvailable: int?) TYPE BTREE;
