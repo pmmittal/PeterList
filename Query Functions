@@ -15,64 +15,121 @@ searchPostingCategory("Housing Lease");
 
 
 USE PeterList;
-CREATE FUNCTION searchJob(jobType,jobIndustry) {
+CREATE FUNCTION searchJob(jobType,jobIndustry,timeInterval) {
 (SELECT *
 FROM Postings p
-WHERE (p.postingCategory = "Job" AND (jobType IS NULL OR p.jobType = jobType) AND (jobIndustry IS NULL OR p. jobIndustry = jobIndustry ))
+WHERE (p.postingCategory = "Job" AND
+      (jobType IS NULL OR p.jobType = jobType) AND
+      (jobIndustry IS NULL OR p.jobIndustry = jobIndustry ) AND
+      (timeInterval IS NULL or datetime(p.postInfo.createdOn) >= (current_datetime() - duration(timeInterval))))
 )
 };
 
 USE PeterList;
-searchJob("Full Time","Management");
+searchJob("Full Time","Medical","P6M");
 
 USE PeterList;
-CREATE FUNCTION searchEvent(eventCategory,eventStartOn ){
+CREATE FUNCTION searchEvent(eventCategory,eventStartOn,timeInterval){
 (
 SELECT *
 FROM Postings p
-WHERE(p.postingCategory = "Event" AND (eventCategory IS NULL OR p.eventCategory = eventCategory) AND (eventStartOn IS NULL OR p.eventStartOn >= eventStartOn))
-)	
+WHERE (p.postingCategory = "Event" AND
+      (eventCategory IS NULL OR p.eventCategory = eventCategory) AND
+      (eventStartOn IS NULL OR p.eventStartOn >= eventStartOn) AND
+      (timeInterval IS NULL or datetime(p.postInfo.createdOn) >= (current_datetime() - duration(timeInterval))))
+)
 };
 
 USE PeterList;
-searchEvent("Travel","2017-06-01T00:00:00");
+searchEvent("Travel","2017-06-01T00:00:00","P3M");
+
 
 
 USE PeterList;
-CREATE FUNCTION searchItemSale(itemCategory,condition,priceMin,priceMax){
+CREATE FUNCTION searchItemSale(itemCategory,condition,priceMin,priceMax,timeInterval){
 (SELECT *
 FROM Postings p
-WHERE (p.postingCategory = "Item Sale" AND (itemCategory IS NULL OR p.itemCategory = itemCategory) AND (condition IS NULL OR p.condition = condition) AND (priceMin IS NULL OR p.postInfo.amount >= priceMin) AND (priceMax IS NULL OR p.postInfo.amount <= priceMax))
-)	
+WHERE (p.postingCategory = "Item Sale" AND
+      (itemCategory IS NULL OR p.itemCategory = itemCategory) AND
+      (condition IS NULL OR p.condition = condition) AND
+      (priceMin IS NULL OR p.postInfo.amount >= priceMin) AND
+      (priceMax IS NULL OR p.postInfo.amount <= priceMax) AND
+      (timeInterval IS NULL or datetime(p.postInfo.createdOn) >= (current_datetime() - duration(timeInterval))))
+)
 };
 
 **Works with Indexing**
 USE PeterList;
-searchItemSale("Musical Instruments","Good",NULL,NULL); 
+searchItemSale("Musical Instruments","Good",NULL,NULL,"P10M");
 **0.04 VS 0.039**
 
 
 ** Housing **
 USE PeterList;
-CREATE FUNCTION searchHousing(postingCategory){
+CREATE FUNCTION searchHousing(postingCategory,timeInterval){
 (SELECT *
 FROM Postings p
-WHERE (postingCategory IS NULL OR p.postingCategory = postingCategory)
+WHERE ((postingCategory IS NULL OR p.postingCategory = postingCategory) AND
+      (timeInterval IS NULL or datetime(p.postInfo.createdOn) >= (current_datetime() - duration(timeInterval))))
 )
 };
 
 USE PeterList;
-CREATE FUNCTION searchHousingSale(priceMin,priceMax,bedroomNumber,bathroomNumber,homeType,size,dateAvailable,furnished,parkingNumber){
+searchHousing("Housing Sale","P3M");
+
+
+USE PeterList;
+CREATE FUNCTION searchHousingSale(priceMin,priceMax,bedroomNumber,bathroomNumber,homeType,size,dateAvailable,furnished,parkingNumber,timeInterval){
 (SELECT *
 FROM Postings p
-WHERE (p.postingCategory = "Housing Sale" AND (priceMin IS NULL OR p.postInfo.amount >= priceMin) AND (priceMax IS NULL OR p.postInfo.amount <= priceMax) AND (bedroomNumber IS NULL OR p.bedroomNumber = bedroomNumber) AND (bathroomNumber IS NULL OR p.bathroomNumber = bathroomNumber) AND (homeType IS NULL OR p.homeType = homeType) AND (size IS NULL OR p.size <= size) AND (dateAvailable IS NULL OR p.dateAvailable <= dateAvailable) AND (furnished IS NULL OR p.furnished = furnished) AND (parkingNumber IS NULL OR p.parkingNumber >= parkingNumber) )
-)	
+WHERE (p.postingCategory = "Housing Sale" AND
+      (priceMin IS NULL OR p.postInfo.amount >= priceMin) AND
+      (priceMax IS NULL OR p.postInfo.amount <= priceMax) AND
+      (bedroomNumber IS NULL OR p.bedroomNumber = bedroomNumber) AND
+      (bathroomNumber IS NULL OR p.bathroomNumber = bathroomNumber) AND
+      (homeType IS NULL OR p.homeType = homeType) AND (size IS NULL OR p.size <= size) AND
+      (dateAvailable IS NULL OR p.dateAvailable <= dateAvailable) AND
+      (furnished IS NULL OR p.furnished = furnished) AND
+      (parkingNumber IS NULL OR p.parkingNumber >= parkingNumber) AND
+      (timeInterval IS NULL or datetime(p.postInfo.createdOn) >= (current_datetime() - duration(timeInterval))))
+)
 };
 
 USE PeterList;
-CREATE FUNCTION searchHousingLease(priceMin,priceMax,bedroomNumber,bathroomNumber,homeType,size,dateAvailable,furnished,hasParking,petAllowed,endDate,roommates){
+CREATE FUNCTION searchHousingLease(priceMin,priceMax,bedroomNumber,bathroomNumber,homeType,size,dateAvailable,furnished,hasParking,petAllowed,endDate,roommates,timeInterval){
 (SELECT *
 FROM Postings p
-WHERE (p.postingCategory = "Housing Lease" AND (priceMin IS NULL OR p.postInfo.amount >= priceMin) AND (priceMax IS NULL OR p.postInfo.amount <= priceMax) AND (bedroomNumber IS NULL OR p.bedroomNumber = bedroomNumber) AND (bathroomNumber IS NULL OR p.bathroomNumber = bathroomNumber) AND (homeType IS NULL OR p.homeType = homeType) AND (size IS NULL OR p.size <= size) AND (dateAvailable IS NULL OR p.dateAvailable <= dateAvailable) AND (furnished IS NULL OR p.furnished = furnished) AND (hasParking IS NULL OR p.hasParking = hasParking) AND (petAllowed IS NULL OR p.petAllowed = petAllowed) AND (endDate IS NULL OR p.endDate <= endDate) AND (roommates IS NULL OR p.roommates <= roommates) )
-)	
+WHERE (p.postingCategory = "Housing Lease" AND
+      (priceMin IS NULL OR p.postInfo.amount >= priceMin) AND
+      (priceMax IS NULL OR p.postInfo.amount <= priceMax) AND
+      (bedroomNumber IS NULL OR p.bedroomNumber = bedroomNumber) AND
+      (bathroomNumber IS NULL OR p.bathroomNumber = bathroomNumber) AND
+      (homeType IS NULL OR p.homeType = homeType) AND
+      (size IS NULL OR p.size <= size) AND
+      (dateAvailable IS NULL OR p.dateAvailable <= dateAvailable) AND
+      (furnished IS NULL OR p.furnished = furnished) AND
+      (hasParking IS NULL OR p.hasParking = hasParking) AND
+      (petAllowed IS NULL OR p.petAllowed = petAllowed) AND
+      (endDate IS NULL OR p.endDate <= endDate) AND
+      (roommates IS NULL OR p.roommates <= roommates) AND
+      (timeInterval IS NULL or datetime(p.postInfo.createdOn) >= (current_datetime() - duration(timeInterval))))
+)
+};
+
+******* For Big Active Data ********
+// Here the name of the channel results dataset is simply the channelName appended with "Results"
+// For example if the channel name is "jobChannel" the results dataset is "jobChannelResults"
+USE PeterList;
+CREATE FUNCTION getResultByChannelAndSubId(channelResultDataset,subId){
+(SELECT r.result.p
+FROM channelResultDataset r
+WHERE r.subscriptionId = uuid(subId)
+)
+};
+
+// Currently having error creating this function
+CREATE FUNCTION deleteResultByChannelAndSubId(channelResultDataset,subId){
+(DELETE from channelResultDataset r
+WHERE r.subscriptionId = uuid(subId)
+)
 };

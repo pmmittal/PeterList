@@ -18,13 +18,13 @@ CREATE TYPE PostingDetailsType AS {
 	amount: float?,
 	userID: string,
 	automatedEmailID: string?,
-	photos: [string]?							
+	photos: [string]?
 };
 
 CREATE TYPE PostingType AS {
 	postID: string,
 	postInfo: PostingDetailsType,
-	postingCategory: string     
+	postingCategory: string
 };
 
 CREATE TYPE UserType AS {
@@ -41,7 +41,7 @@ CREATE TYPE JobType AS {
 	postID: string,
 	jobInfo: PostingDetailsType,
 	jobType: string,
-	jobIndustry: string,  
+	jobIndustry: string,
 	jobOrganizationName: string,
 	jobTitle: string,
 	jobRequirement: string
@@ -59,8 +59,8 @@ CREATE TYPE HousingSaleType AS {
 	dateAvailable: string,
 	furnished: boolean?,
 	parkingNumber: int?,
-	localityName: string?					
-	
+	localityName: string?
+
 };
 
 CREATE TYPE HousingLeaseType AS {
@@ -99,7 +99,6 @@ CREATE TYPE ItemsSaleType AS {
 };
 
 CREATE TYPE UserSubscriptionType AS {
-  subId: uuid,
-  userID: {{string}}
+  subID: string,
+  userID: string
 };
-
