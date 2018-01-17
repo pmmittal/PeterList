@@ -46,3 +46,7 @@ INSERT INTO HousingLease({"postID": "08f4a5", "housingInfo":{"location":{"street
 
 USE PeterList;
 INSERT INTO User({"userID": "f64748","firstName": "Anteater", "lastName": "Mata", "phone": "675-888-6341", "email": "fbffigg@hotmail.com", "password": "zaa1z7", "userPostings": ['8d10da', '79d42a', '933ece', '29f83e', '08f4a5']});
+
+USE PeterList;
+CREATE DATASET UserSubscription(UserSubscriptionType) PRIMARY KEY subID;
+insert into UserSubscription({"subID": "cd72f63d-9392-44a2-a77b-4594d28e816a", "userID": "23423"});
