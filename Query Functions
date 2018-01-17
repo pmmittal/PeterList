@@ -127,6 +127,16 @@ WHERE r.subscriptionId = uuid(subId)
 )
 };
 
+USE PeterList;
+CREATE FUNCTION getEmailUsingUserId(id) {
+    (SELECT u.email
+    FROM User u
+    WHERE u.userID = id
+    )
+};
+
+getEmailUsingUserId("f64748");
+
 // Currently having error creating this function
 CREATE FUNCTION deleteResultByChannelAndSubId(channelResultDataset,subId){
 (DELETE from channelResultDataset r
