@@ -5,7 +5,9 @@ create broker peterListBroker at "http://127.0.0.1:5000/brokerNotifications";
 create repetitive channel jobChannel using searchJob@3 period duration("P3M");
 create repetitive channel eventChannel using searchEvent@3 period duration("P3M");
 create repetitive channel itemSaleChannel using searchItemSale@5 period duration("P3M");
-create repetitive channel housingChannel using searchHousing@2 period duration("P3M");
+create repetitive channel housingSaleChannel using searchHousingSale@10 period duration("PT10S");
+create repetitive channel housingLeaseChannel using searchHousingLease@13 period duration("PT10S");
+
 
 *** Subscribe to a channel ***
 USE PeterList;
@@ -13,7 +15,6 @@ USE PeterList;
 subscribe to jobChannel("Full Time","Medical","P6M") on peterListBroker;
 subscribe to eventChannel("Travel","2017-06-01T00:00:00","P3M") on peterListBroker;
 subscribe to itemSaleChannel("Musical Instruments","Good",NULL,NULL,"P10M") on peterListBroker;
-subscribe to housingChannel("Housing Sale","P3M") on peterListBroker;
 
 **** To Unsubscribe from a channel ****
 unsubscribe "96577f34-ba9f-9eef-4c04-8150377bd2f1" from postCategoryChannel;
