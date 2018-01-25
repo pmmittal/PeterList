@@ -1,6 +1,6 @@
 USE PeterList;
 CREATE FUNCTION searchPostingCategory(category) {
-    (SELECT *
+    (SELECT VALUE p
     FROM Postings p
     WHERE p.postingCategory = category
     )
@@ -16,7 +16,7 @@ searchPostingCategory("Housing Lease");
 
 USE PeterList;
 CREATE FUNCTION searchJob(jobType,jobIndustry,timeInterval) {
-(SELECT *
+(SELECT VALUE p
 FROM Postings p
 WHERE (p.postingCategory = "Job" AND
       (jobType IS NULL OR p.jobType = jobType) AND
@@ -31,7 +31,7 @@ searchJob("Full Time","Medical","P6M");
 USE PeterList;
 CREATE FUNCTION searchEvent(eventCategory,eventStartOn,timeInterval){
 (
-SELECT *
+SELECT VALUE p
 FROM Postings p
 WHERE (p.postingCategory = "Event" AND
       (eventCategory IS NULL OR p.eventCategory = eventCategory) AND
@@ -47,7 +47,7 @@ searchEvent("Travel","2017-06-01T00:00:00","P3M");
 
 USE PeterList;
 CREATE FUNCTION searchItemSale(itemCategory,condition,priceMin,priceMax,timeInterval){
-(SELECT *
+(SELECT VALUE p
 FROM Postings p
 WHERE (p.postingCategory = "Item Sale" AND
       (itemCategory IS NULL OR p.itemCategory = itemCategory) AND
@@ -67,7 +67,7 @@ searchItemSale("Musical Instruments","Good",NULL,NULL,"P10M");
 ** Housing **
 USE PeterList;
 CREATE FUNCTION searchHousing(postingCategory,timeInterval){
-(SELECT *
+(SELECT VALUE p
 FROM Postings p
 WHERE ((postingCategory IS NULL OR p.postingCategory = postingCategory) AND
       (timeInterval IS NULL or datetime(p.postInfo.createdOn) >= (current_datetime() - duration(timeInterval))))
@@ -80,7 +80,7 @@ searchHousing("Housing Sale","P3M");
 
 USE PeterList;
 CREATE FUNCTION searchHousingSale(priceMin,priceMax,bedroomNumber,bathroomNumber,homeType,size,dateAvailable,furnished,parkingNumber,timeInterval){
-(SELECT *
+(SELECT VALUE p
 FROM Postings p
 WHERE (p.postingCategory = "Housing Sale" AND
       (priceMin IS NULL OR p.postInfo.amount >= priceMin) AND
@@ -97,7 +97,7 @@ WHERE (p.postingCategory = "Housing Sale" AND
 
 USE PeterList;
 CREATE FUNCTION searchHousingLease(priceMin,priceMax,bedroomNumber,bathroomNumber,homeType,size,dateAvailable,furnished,hasParking,petAllowed,endDate,roommates,timeInterval){
-(SELECT *
+(SELECT VALUE p
 FROM Postings p
 WHERE (p.postingCategory = "Housing Lease" AND
       (priceMin IS NULL OR p.postInfo.amount >= priceMin) AND
