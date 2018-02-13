@@ -16,19 +16,19 @@ CREATE TYPE PostingDetailsType AS {
 	createdOn: string,
 	description: string,
 	amount: float?,
-	userID: string,
+	userID: uuid,
 	automatedEmailID: string?,
 	photos: [string]?
 };
 
 CREATE TYPE PostingType AS {
-	postID: string,
+	postID: uuid,
 	postInfo: PostingDetailsType,
 	postingCategory: string
 };
 
 CREATE TYPE UserType AS {
-	userID: string,
+	userID: uuid,
 	firstName: string,
 	lastName: string,
 	phone: string?,
@@ -38,7 +38,7 @@ CREATE TYPE UserType AS {
 };
 
 CREATE TYPE JobType AS {
-	postID: string,
+	postID: uuid,
 	jobInfo: PostingDetailsType,
 	jobType: string,
 	jobIndustry: string,
@@ -50,7 +50,7 @@ CREATE TYPE JobType AS {
 
 
 CREATE TYPE HousingSaleType AS {
-	postID: string,
+	postID: uuid,
 	housingInfo: PostingDetailsType,
 	bedroomNumber: int,
 	bathroomNumber:int?,
@@ -64,7 +64,7 @@ CREATE TYPE HousingSaleType AS {
 };
 
 CREATE TYPE HousingLeaseType AS {
-	postID: string,
+	postID: uuid,
 	housingInfo: PostingDetailsType,
 	bedroomNumber: int,
 	bathroomNumber:int?,
@@ -81,7 +81,7 @@ CREATE TYPE HousingLeaseType AS {
 };
 
 CREATE TYPE EventType AS {
-	postID: string,
+	postID: uuid,
 	eventInfo: PostingDetailsType,
 	eventStartOn: string,
 	eventEndOn: string,
@@ -91,7 +91,7 @@ CREATE TYPE EventType AS {
 };
 
 CREATE TYPE ItemsSaleType AS {
-	postID: string,
+	postID: uuid,
 	itemInfo: PostingDetailsType,
 	itemName: string?,
 	itemCategory: string,
